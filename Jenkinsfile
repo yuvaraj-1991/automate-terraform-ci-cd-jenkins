@@ -61,6 +61,13 @@ pipeline {
                 }                 
             }
         }
+        stage('Terraform destroy') {
+            steps {
+                dir('automate-terraform-ci-cd-jenkins/terraform'){
+                    sh 'terraform destroy'
+                }                 
+            }
+        }
         stage('Extracting IP Address from output file') {
             steps {
                 dir('automate-terraform-ci-cd-jenkins/terraform'){
