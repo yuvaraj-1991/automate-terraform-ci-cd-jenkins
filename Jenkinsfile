@@ -22,7 +22,7 @@ pipeline {
                 sh '''
                     if ! command -v ansible &> /dev/null; then
                         echo "Ansible is not installed. Installing it now!!!"
-                        sudo apt update && apt upgrade -y
+                        sudo apt update -y
                         sudo apt install ansible -y
                     else
                         echo "Ansible is already installed"
