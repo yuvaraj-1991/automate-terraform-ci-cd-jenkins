@@ -63,7 +63,10 @@ pipeline {
         }
         stage('Extracting IP Address from output file') {
             steps {
-                sh 'terraform output -raw public-ip-ec2-instance > ec2_ip.txt'                
+                dir('automate-terraform-ci-cd-jenkins/terraform'){
+                    sh 'terraform output -raw public-ip-ec2-instance > /ansible/ec2_ip.txt'
+                    sh 'cat /ansible/ec2_ip.txt'
+                }                                  
             }
         }
         stage('Create Ansible Inventory file') {
