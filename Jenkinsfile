@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                sh 'git clone https://github.com/yuvaraj-1991/automate-terraform-ci-cd.git'
+                sh 'git clone https://github.com/yuvaraj-1991/automate-terraform-ci-cd-jenkins.git'
             }
         }
         stage('Check for Packages Ansible & terraform if not present Install it') {
@@ -36,7 +36,7 @@ pipeline {
         }
         stage('Terraform Initialize') {
             steps {
-                sh 'cd automate-terraform-ci-cd/terraform'
+                sh 'cd automate-terraform-ci-cd-jenkins/terraform'
                 sh 'terraform init'                
             }
         }
