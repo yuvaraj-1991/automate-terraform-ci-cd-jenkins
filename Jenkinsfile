@@ -20,7 +20,7 @@ pipeline {
             steps {
                 sh 'echo "Checking if ansible is installed on the machine"'
                 sh '''
-                    if ! command -v ansible &> /dev/null; then
+                    if ! terraform --version >/dev/null 2>&1; then
                         echo "Ansible is not installed. Installing it now!!!"
                         sudo apt update && apt upgrade -y
                         sudo apt install ansible -y
