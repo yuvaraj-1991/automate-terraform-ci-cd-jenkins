@@ -27,7 +27,7 @@ pipeline {
                     else
                         echo "Ansible is already installed"
                     fi
-                    if ! terraform --version >/dev/null 2>&1; then
+                    if ! command -v terraform &> /dev/null; then
                         echo "Terraform is not installed. Installing it now!!!"
                         sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
                         wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
@@ -42,18 +42,23 @@ pipeline {
     
         stage('Terraform Initialize') {
             steps {
-                sh 'cd automate-terraform-ci-cd-jenkins/terraform'
-                sh 'terraform init'                
+                dir('automate-terraform-ci-cd-jenkins/terraform'){
+                    sh 'terraform init'
+                }                                
             }
         }
         stage('Terraform Plan') {
             steps {
-                sh 'terraform plan'                
+                dir('automate-terraform-ci-cd-jenkins/terraform'){
+                    sh 'terraform plan'
+                }               
             }
         }
         stage('Terraform Apply') {
             steps {
-                sh 'terraform apply -auto-approve'                
+                dir('automate-terraform-ci-cd-jenkins/terraform'){
+                    sh 'terraform apply -auto-approve'
+                }                 
             }
         }
         stage('Extracting IP Address from output file') {
