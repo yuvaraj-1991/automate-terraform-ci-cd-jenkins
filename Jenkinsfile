@@ -64,7 +64,7 @@ pipeline {
         stage('Terraform destroy') {
             steps {
                 dir('automate-terraform-ci-cd-jenkins/terraform'){
-                    sh 'terraform destroy'
+                    sh 'terraform destroy -auto-approve'
                 }                 
             }
         }
