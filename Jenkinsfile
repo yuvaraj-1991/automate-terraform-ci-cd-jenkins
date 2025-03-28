@@ -8,8 +8,9 @@ pipeline {
     stages {
         stage('Cleanup') {
             steps {
-                deleteDir() // Deletes everything in the workspace
+                sh 'rm -rf automate-terraform-ci-cd-jenkins || true'
             }
+        }
         stage('Git Checkout') {
             steps {
                 sh 'git clone https://github.com/yuvaraj-1991/automate-terraform-ci-cd-jenkins.git'
