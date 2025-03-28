@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "yuvaraj-s3-latest-bucket" {
-  bucket = "yuvaraj-tf-state-bucket"
+  bucket = "yuvaraj-s3-latest-bucket"
   force_destroy = true
 
   tags = {
