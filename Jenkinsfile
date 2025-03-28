@@ -30,11 +30,12 @@ pipeline {
                     if ! terraform --version >/dev/null 2>&1; then
                         echo "Terraform is not installed. Installing it now!!!"
                         sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
-                        // wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
-                        // echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+                        wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
+                        echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
                         sudo apt-get update && sudo apt-get install -y terraform
                     else
                         echo "Terraform is already Installed"
+                    fi   
                     '''
             }
         }
