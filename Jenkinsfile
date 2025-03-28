@@ -6,6 +6,10 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('aws-terraform')
     }
     stages {
+        stage('Cleanup') {
+            steps {
+                deleteDir() // Deletes everything in the workspace
+            }
         stage('Git Checkout') {
             steps {
                 sh 'git clone https://github.com/yuvaraj-1991/automate-terraform-ci-cd-jenkins.git'
