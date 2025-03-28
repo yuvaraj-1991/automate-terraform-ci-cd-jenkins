@@ -20,14 +20,14 @@ pipeline {
             steps {
                 sh 'echo "Checking if ansible is installed on the machine"'
                 sh '''
-                    if ! terraform --version >/dev/null 2>&1; then
+                    if ! command -v ansible &> /dev/null; then
                         echo "Ansible is not installed. Installing it now!!!"
                         sudo apt update && apt upgrade -y
                         sudo apt install ansible -y
                     else
                         echo "Ansible is already installed"
                     fi
-                    if ! command -v terraform &> /dev/null; then
+                    if ! terraform --version >/dev/null 2>&1; then
                         echo "Terraform is not installed. Installing it now!!!"
                         sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
                 wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
