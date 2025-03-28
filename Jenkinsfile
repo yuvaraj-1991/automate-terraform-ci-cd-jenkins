@@ -14,7 +14,7 @@ pipeline {
         stage('Check for Packages Ansible & terraform if not present Install it') {
             steps {
                 sh 'echo "Checking if ansible is installed on the machine"'
-                sh """
+                sh '''
                     if ! command -v ansible &> /dev/null; then
                         echo "Ansible is not installed. Installing it now!!!"
                         sudo apt update && apt upgrade -y
@@ -30,7 +30,7 @@ pipeline {
                 sudo apt-get update && sudo apt-get install -y terraform
                     else
                         echo "Terraform is already Installed"
-                    """
+                    '''
             }
         }
         stage('Terraform Initialize') {
