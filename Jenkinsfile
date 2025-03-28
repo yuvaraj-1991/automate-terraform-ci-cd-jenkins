@@ -38,7 +38,7 @@ pipeline {
                     '''
             }
         }
-    }
+    
         stage('Terraform Initialize') {
             steps {
                 sh 'cd automate-terraform-ci-cd-jenkins/terraform'
@@ -75,4 +75,4 @@ pipeline {
             }
         }
     }
-
+}
